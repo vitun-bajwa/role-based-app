@@ -142,6 +142,7 @@ body {
 	box-shadow: 0px 2px 2px #5C5696;
 	cursor: pointer;
 	transition: .2s;
+    padding-left: 10rem;
 }
 
 .login__submit:active,
@@ -186,3 +187,18 @@ body {
 mat-icon{
 	font-family: 'Material Icons' !important;
   }
+.mat-form-field {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    width: 100%;
+    padding: 10px;
+}
+.alert-danger {
+    color: red;
+    background-color: #fff;
+    border-color: #fff;
+}
+.mat-error{
+	display: inline-block;
+}

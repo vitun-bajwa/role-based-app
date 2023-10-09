@@ -2,91 +2,34 @@
   <div class="screen">
     <div class="screen__content">
       <form
-        class="login"
-        name="form"
-        #loginform="ngForm"
-        (ngSubmit)="login(loginform.value)"
+      [formGroup]="empregister" ngClass="form" 
       >
         <div class="login__field">
-          <input
-            type="text"
-            id="email"
-            name="email"
-            class="login__input"
-            placeholder="User name/Email"
-            ngModel
-            (keypress)="valuecheck($event)"
-            #email="ngModel"
-            required
-            minlength="5"
-            maxlength="30"
-            pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
-          />
-        </div>
-        <span class="redCL">{{ inputvalue }}</span>
-        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
-          <div *ngIf="email.errors?.['required'] ">
-            <span class="redCL">Email is required</span>
-          </div>
-          <div *ngIf="email.errors?.['minlength']">
-            <span class="redCL"
-              >Minimum Length is
-              {{email.errors?.['minlength'].requiredLength}}</span
-            >
-          </div>
-          <div class="redCL" *ngIf="email.errors?.['pattern']">
-            Invalid Email
-          </div>
+            <mat-form-field appearance="outline">
+                <mat-label for="Email">Email</mat-label>
+                <input matInput id="emailAddress" formControlName="Email" [errorStateMatcher]="matcher"/>
+                <mat-error class="alert-danger" *ngIf="empregister?.invalid && empregister.get('Email')?.hasError('required')">Required
+                  </mat-error>
+                  <mat-error class="alert-danger" *ngIf="empregister?.invalid && empregister.get('Email')?.hasError('pattern')">Email Invalid
+                  </mat-error>
+              </mat-form-field>
         </div>
 
         <div class="login__field">
-          <input
-            [type]="Phide ? 'password' : 'text'"
-            name="password"
-            class="login__input"
-            placeholder="Password"
-            ngModel
-            (keypress)="valuecheck($event)"
-            #password="ngModel"
-            required
-            minlength="8"
-            maxlength="16"
-            pattern="^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$"
-          />
-          <button
-            mat-icon-button
-            (click)="Phide = !Phide"
-            [attr.aria-pressed]="Phide"
-          >
-            <mat-icon>{{ Phide ? "visibility_off" : "visibility" }}</mat-icon>
-          </button>
-        </div>
-        <span class="redCL">{{ inputvalue }}</span>
-        <div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
-          <div *ngIf="password.errors?.['required'] ">
-            <span class="redCL">password is required</span>
-          </div>
-          <div *ngIf="password.errors?.['minlength']">
-            <span class="redCL"
-              >Minimum Length is
-              {{password.errors?.['minlength'].requiredLength}}</span
-            >
-          </div>
-          <div class="redCL" *ngIf="password.errors?.['pattern']">
-            Invalid Password ! Required one Alphabet and one number
-          </div>
-        </div>
-
-        <div>
-          <br />
-          <input type="checkbox" name="checkbox" ngModel /> remember me
+            <mat-form-field appearance="outline" class="cstm_mat_inr">
+                <mat-label for="Password">Password </mat-label>
+                <input matInput id="password" formControlName="Password" [type]="hide ? 'password' : 'text'" [errorStateMatcher]="matcher"/>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error class="alert-danger" *ngIf="empregister?.invalid && empregister.get('Password')?.hasError('required')">Required
+                </mat-error>
+                <mat-error class="alert-danger" *ngIf="empregister?.invalid && empregister.get('Password')?.hasError('pattern')">Password Invalid
+                </mat-error>
+              </mat-form-field>
         </div>
         <button
-          class="button login__submit"
-          type="submit"
-          [disabled]="!loginform.valid"
-        >
-          <span (click)="valuecheck($event)">Log In</span>
+          class="button login__submit" type="submit" mat-flat-button color="primary" (click)="onSubmit()">Submit
         </button>
       </form>
     </div>

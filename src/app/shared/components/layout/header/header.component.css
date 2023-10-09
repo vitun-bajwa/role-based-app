@@ -1,0 +1,13 @@
+.navbar {
+    /* position: relative; */
+    /* display: flex; */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10px;
+}
+
+.navbar[_ngcontent-vos-c18] {
+    /* flex-wrap: wrap; */
+    align-items: center;
+}

@@ -1,4 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import url("https://fonts.gstatic.com");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css");
+@import url("https://cdn.jsdelivr.net/npm/flat-icons@1.0.0/creative.min.css");
+@import './assets/lib/owlcarousel/assets/owl.carousel.min.css';
+@import './assets/lib/lightbox/css/lightbox.min.css';
+@import "./assets/css/style.css";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.cstm_mat_inr .mat-form-field-outline {
+    box-shadow: inset 0px 0px 90px #fff;
+    border-radius: 10px;
+}
+
+app-header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 1;
+}
+
+app-sidebar {
+    position: fixed;
+    top: 70px;
+    left: 0px;
+    width: 200px;
+    z-index: 1;
+}
+
+.main_layout {
+    position: relative;
+    width: 100%;
+    padding: 90px 0px 0px 220px;
+}
+
