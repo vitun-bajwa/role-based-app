@@ -1,0 +1,32 @@
+{
+  "task": [
+    {
+      "id": 1,
+      "addTask": "created api",
+      "users": "sourav",
+      "status": "To do"
+    },
+    {
+      "id": 2,
+      "addTask": "api task",
+      "users": "vitun",
+      "status": "To do"
+    },
+    {
+      "id": 3,
+      "addTask": "fsdvfvc",
+      "users": "sourav",
+      "status": "To do"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

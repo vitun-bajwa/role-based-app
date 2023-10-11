@@ -21,6 +21,11 @@ import { UiModule } from '../ui/ui.module';
     UserModule,
     UiModule
   ],
+  exports:[
+    LayoutComponent,
+    SidebarComponent,
+    HeaderComponent
+  ]
 
 })
 export class SharedModule { }

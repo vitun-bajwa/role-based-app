@@ -7,24 +7,24 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class RegisterService {
-  API = environment.baseAPI;
+  API:any = environment.baseAPI;
   constructor(private http: HttpClient) {}
 
   registerData(inputData: any) {
     return this.http.post(this.API, inputData);
   }
 
-  getUsers() {
-    return this.http.get<any[]>(this.API);
+  get() {
+    return this.http.get(this.API);
   }
-  addUser(data: any): Observable<any[]> {
-    return this.http.post<any[]>(this.API, data);
+  add(data: any){
+    return this.http.post(this.API, data);
   }
-  deleteUser(id: number): Observable<any[]> {
-    return this.http.delete<any[]>(this.API + '/' + id);
+  delete(id: number){
+    return this.http.delete(this.API + '/' + id);
   }
-  updateUser(data: any): Observable<any[]> {
-    return this.http.put<any[]>(this.API + '/' + data.id, data);
+  update(data: any){
+    return this.http.put(this.API + '/' + data.id, data);
   }
   searchUser(eventdata: any, value: any) {
     return of(

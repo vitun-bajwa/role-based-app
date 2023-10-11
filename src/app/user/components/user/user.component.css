@@ -1,0 +1,22 @@
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  .toolbar{
+    border-radius: 10px 10px 0 0;
+  }
+  table {
+    width: 100%;
+  }
+  .spinner{
+    translate: (700% -100%) ;
+    z-index: 1;
+  
+  }
+  .navlink{
+    color: rgba(0,0,0,.87);
+    text-decoration: none;
+  }
+  ::ng-deep.highlighted-text{
+    font-weight: bolder;
+  }

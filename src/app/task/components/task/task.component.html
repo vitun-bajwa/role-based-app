@@ -1,1 +1,68 @@
-<p>task works!</p>
+<div>
+    <span class="jira">JIRA BOARD (Drag n Drop)</span>
+</div>
+<form [formGroup]="profileForm" ngClass="form" class="invert">
+    <mat-form-field appearance="outline">
+      <mat-label for="add-Task">Add Task</mat-label>
+      <input matInput id="addTask" formControlName="addTask"/>
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid &&
+          profileForm.get('addTask')?.hasError('required')
+        ">
+        Required
+      </mat-error>
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid &&
+          profileForm.get('addTask')?.hasError('pattern')
+        ">
+        task invalid
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="users">
+        <mat-label>Users</mat-label>
+        <mat-select formControlName="users">
+          <mat-option value="{{item}}" *ngFor="let item of getUsersLists">{{item}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    <button type="submit" mat-raised-button class="button" color="primary" (click)="OnAddTaskClick()">Add Task</button>  
+</form>
+
+<div class="kanban-board">
+    <div class="column" (dragover)="onDragOver($event)" (drop)="onDrop($event, 'To do')">
+        <div class="column-header">To do</div>
+        <div class="task" draggable="true" *ngFor="let item of filterTickets('To do')"  (dragstart)="onDragStart(item)">{{item.id}}
+            <br>
+            {{item.addTask}}
+            <br>
+            {{item.users}}
+        </div>
+    </div>
+    <div class="column" (dragover)="onDragOver($event)" (drop)="onDrop($event, 'In Progress')">
+        <div class="column-header">In Progress</div>
+        <div class="task" draggable="true" *ngFor="let item of filterTickets('In Progress')" (dragstart)="onDragStart(item)">{{item.id}}
+            <br>
+            {{item.addTask}}
+            <br>
+            {{item.users}}
+        </div>
+    </div>
+    <div class="column" (dragover)="onDragOver($event)" (drop)="onDrop($event, 'In Review')">
+        <div class="column-header">In Review</div>
+        <div class="task" draggable="true" *ngFor="let item of filterTickets('In Review')" (dragstart)="onDragStart(item)">{{item.id}}
+            <br>
+            {{item.addTask}}
+            <br>
+            {{item.users}}
+        </div>
+    </div>
+    <div class="column" (dragover)="onDragOver($event)" (drop)="onDrop($event, 'Done')">
+        <div class="column-header">Done</div>
+        <div class="task" draggable="true" *ngFor="let item of filterTickets('Done')" (dragstart)="onDragStart(item)">{{item.id}}
+            <br>
+            {{item.addTask}}
+            <br>
+            {{item.users}}
+        </div>
+    </div>
+</div>

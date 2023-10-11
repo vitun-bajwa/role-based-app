@@ -1,7 +1,28 @@
 {
   "user": [
     {
-      
+      "id": 1,
+      "FirstName": "vitun",
+      "LastName": "bajwa",
+      "Email": "vitun@gmail.com",
+      "Password": "Vitun@1997",
+      "ConfirmPassword": "Vitun@1997",
+      "Postalcode": 14502,
+      "City": "Mohali",
+      "Date": "2001-02-05T18:30:00.000Z",
+      "role": "User"
+    },
+    {
+      "id": 2,
+      "FirstName": "sourav",
+      "LastName": "rana",
+      "Email": "rana@gmail.com",
+      "Password": "Rana@1995",
+      "ConfirmPassword": "Rana@1995",
+      "Postalcode": 14502,
+      "City": "Mohali",
+      "Date": "2001-02-11T18:30:00.000Z",
+      "role": "User"
     }
   ],
   "profile": {

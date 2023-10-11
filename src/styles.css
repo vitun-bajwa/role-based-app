@@ -32,6 +32,10 @@ app-sidebar {
 .main_layout {
     position: relative;
     width: 100%;
-    padding: 90px 0px 0px 220px;
+    padding: 90px 15px 0 220px;
 }
-
+.alert-danger {
+    color: red;
+    background-color: #fff;
+    border-color: #fff;
+}

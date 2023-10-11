@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseAPI: "http://localhost:3000/user"
+  baseAPI: "http://localhost:3000/user",
+  addTask: "http://localhost:4000/task"
 };
 
 /*

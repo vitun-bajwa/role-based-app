@@ -10,22 +10,19 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component:LayoutComponent,
     loadChildren: () =>
       import('./feature/feature.module').then((m) => m.FeatureModule),
     // canActivate: [AuthGuard]
   },
   {
     path: 'user',
-    component:LayoutComponent,
-    loadChildren: () =>
-      import('./user/user.module').then((m) => m.UserModule),
+    component: LayoutComponent,
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
   },
   {
     path: 'task',
-    component:LayoutComponent,
-    loadChildren: () =>
-      import('./task/task.module').then((m) => m.TaskModule),
+    component: LayoutComponent,
+    loadChildren: () => import('./task/task.module').then((m) => m.TaskModule),
   },
 ];
 

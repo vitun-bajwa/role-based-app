@@ -29,3 +29,5 @@ export class Toastr {
     });
   }
 }
+export { ToastrService };
+

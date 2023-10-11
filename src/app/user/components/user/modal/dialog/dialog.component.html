@@ -1,1 +1,173 @@
-<p>dialog works!</p>
+<mat-grid-list cols="4" rowHeight="100px">
+  <h1 ngClass="headertext">
+    {{ changeBtn ? "Update Form" : "Add User" }}
+  </h1>
+  <button mat-raised-button color="warn" ngClass="closebtn" (click)="this.dialogRef.close()">
+    Close
+  </button>
+  <form [formGroup]="profileForm" ngClass="form" (ngSubmit)="register()">
+    <mat-form-field appearance="outline">
+      <mat-label for="first-name">First Name </mat-label>
+      <input matInput id="Firstname" formControlName="FirstName" />
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid &&
+          profileForm.get('FirstName')?.hasError('required')
+        ">
+        Required
+      </mat-error>
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid &&
+          profileForm.get('FirstName')?.hasError('pattern')
+        ">
+        First Name Invalid
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="last-name">Last Name </mat-label>
+      <input matInput id="lastname" type="text" formControlName="LastName" />
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid &&
+          profileForm.get('LastName')?.hasError('required')
+        ">
+        Required
+      </mat-error>
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid &&
+          profileForm.get('LastName')?.hasError('pattern')
+        ">
+        Last Name Invalid
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="Email">Email</mat-label>
+      <input matInput id="emailAddress" formControlName="Email" />
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid && profileForm.get('Email')?.hasError('required')
+        ">
+        Required
+      </mat-error>
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid && profileForm.get('Email')?.hasError('pattern')
+        ">
+        Email Invalid
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" ngClass="calender">
+      <mat-label> Date of Birth</mat-label>
+      <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" formControlName="Date" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid && profileForm.get('Date')?.hasError('required')
+        ">
+        Required
+      </mat-error>
+      <mat-error *ngIf="profileForm.get('Date')?.hasError('invalidDOBYear')">
+        Select year greater than 2000.
+      </mat-error>
+      <mat-error *ngIf="profileForm.get('Date')?.hasError('MaximumAge')">
+        Age is greater than 50
+      </mat-error>
+      <mat-error *ngIf="profileForm.get('Date')?.hasError('MinimumAge')">
+        Age is Smaller than 18 or equal
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" ngClass="calender">
+      <mat-label for="Password">Password </mat-label>
+      <input matInput id="password" [type]="Phide ? 'password' : 'text'" type="password" formControlName="Password" />
+      <button mat-icon-button matSuffix type="button" (click)="Phide = !Phide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="Phide">
+        <mat-icon>{{ Phide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid &&
+          profileForm.get('Password')?.hasError('required')
+        ">
+        Required
+      </mat-error>
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid &&
+          profileForm.get('Password')?.hasError('pattern')
+        ">
+        Password Invalid
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" ngClass="calender">
+      <mat-label for="Confirm Password">Confirm Password </mat-label>
+      <input matInput id="confirmpassword" [type]="CPhide ? 'password' : 'text'" formControlName="ConfirmPassword" />
+      <button mat-icon-button matSuffix type="button" (click)="CPhide = !CPhide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="CPhide">
+        <mat-icon>{{ CPhide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid &&
+          profileForm.get('ConfirmPassword')?.hasError('required')
+        ">
+        Required
+      </mat-error>
+
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid &&
+          profileForm.get('ConfirmPassword')?.hasError('pattern')
+        ">
+        ConfirmPassword Invalid
+      </mat-error>
+      <mat-error class="alert-danger" *ngIf="profileForm.get('ConfirmPassword')?.hasError('Matched')">
+        Password Not Matched
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>City</mat-label>
+      <mat-select formControlName="City">
+        <mat-option value="Chandighar">Chandigarh</mat-option>
+        <mat-option value="Mohali">Mohali</mat-option>
+        <mat-option value="Mohali">Punjab</mat-option>
+        <mat-option value="Mohali">Kerala</mat-option>
+        <mat-option value="Mohali">Karnataka</mat-option>
+      </mat-select>
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid && profileForm.get('City')?.hasError('required')
+        ">
+        Required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>role</mat-label>
+      <mat-select formControlName="role">
+        <mat-option value="Admin">Admin</mat-option>
+        <mat-option value="User">User</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+      <mat-label for="last-name">Postal code </mat-label>
+      <input matInput id="postalcode" type="number" formControlName="Postalcode" (keypress)="presskey($event)" />
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid &&
+          profileForm.get('Postalcode')?.hasError('required')
+        ">
+        Required
+      </mat-error>
+      <mat-error class="alert-danger" *ngIf="
+          profileForm?.invalid &&
+          profileForm.get('Postalcode')?.hasError('pattern')
+        ">
+        Min Or Max 5 Postalcode
+      </mat-error>
+      <mat-error class="alert-danger" *ngIf="profileForm.get('Postalcode')?.hasError('Matched')">
+        Password Not Matched
+      </mat-error>
+    </mat-form-field>
+    <div>
+      <button class="example-button-row btn" [disabled]="profileForm.invalid" type="submit" mat-flat-button>
+        {{ changeBtn ? "Update" : "Submit" }}
+      </button>
+    </div>
+  </form>
+  <mat-card-content>
+    <mat-spinner color="warn" ngClass="loader" mode="indeterminate" *ngIf="loading">, ></mat-spinner>
+  </mat-card-content>
+</mat-grid-list>
