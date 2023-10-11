@@ -5,18 +5,6 @@
     <mat-form-field appearance="outline">
       <mat-label for="add-Task">Add Task</mat-label>
       <input matInput id="addTask" formControlName="addTask"/>
-      <mat-error class="alert-danger" *ngIf="
-          profileForm?.invalid &&
-          profileForm.get('addTask')?.hasError('required')
-        ">
-        Required
-      </mat-error>
-      <mat-error class="alert-danger" *ngIf="
-          profileForm?.invalid &&
-          profileForm.get('addTask')?.hasError('pattern')
-        ">
-        task invalid
-      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="users">

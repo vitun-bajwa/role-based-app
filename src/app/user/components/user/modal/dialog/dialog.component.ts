@@ -13,6 +13,15 @@ import { passwordvalidaator } from 'src/app/core/validators/passwordvalidaator';
   styleUrls: ['./dialog.component.css'],
 })
 export class DialogComponent implements OnInit {
+  name: string;
+  Phide: boolean = true;
+  CPhide: boolean = true;
+  matchError: boolean = false;
+  minDate: Date;
+  maxDate: Date;
+  changeBtn: boolean = false;
+  loading: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<DialogComponent>,
@@ -32,50 +41,23 @@ export class DialogComponent implements OnInit {
   ngOnInit() {
     this.assignvalue();
   }
-  name: string;
-  Phide: boolean = true;
-  CPhide: boolean = true;
-  matchError: boolean = false;
-  PermChek: boolean = false;
-  minDate: Date;
-  maxDate: Date;
-  changeBtn: boolean = false;
-  loading: boolean = false;
 
   profileForm = this.fb.group({
     id: ['', []],
     FirstName: ['', [Validators.required, Validators.pattern(regex.name)]],
     LastName: ['', [Validators.required, Validators.pattern(regex.name)]],
-    Email: [
-      '',
-      [Validators.required, Validators.email, Validators.pattern(regex.email)],
-    ],
+    Email: ['',[Validators.required, Validators.email, Validators.pattern(regex.email)]],
     Password: ['', [Validators.required, Validators.pattern(regex.password)]],
-    ConfirmPassword: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern(regex.password),
-        passwordvalidaator(),
-      ],
-    ],
-    Postalcode: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.pattern(regex.postcode),
-      ],
-    ],
+    ConfirmPassword: ['',[Validators.required,Validators.pattern(regex.password),passwordvalidaator()]],
+    Postalcode: ['',[Validators.required,Validators.minLength(5),Validators.pattern(regex.postcode)]],
     City: ['Chandigarh', [Validators.required]],
-
     Date: ['', [Validators.required, datePickerValidator()]],
     role: ['admin', [Validators.required]]
   });
 
   register() {
     this.loading = true;
-    if (this.changeBtn == true) {
+    if (this.changeBtn === true) {
       this.apiservice
         .update(this.profileForm.value)
         .subscribe((res: any) => {

@@ -20,8 +20,10 @@ export class UserComponent implements OnInit {
     this.getUsers();
   }
   showPassword: boolean = false;
+  searchinput: any = '';
+  employee: Users[] = [];
   Dialog: MatDialogRef<DialogComponent> | undefined;
-
+  @ViewChild(MatPaginator, { static: true }) paginator: any = MatPaginator;
   constructor(
     private _router: Router,
     public dialogModel: MatDialog,
@@ -31,28 +33,20 @@ export class UserComponent implements OnInit {
     public _toastr: ToastrService
   ) {}
 
-  searchinput: any = '';
-  employee: Users[] = [];
-
   displayedColumns: string[] = [
     constants.id,
-    'FirstName',
-    'LastName',
-    'Email',
-    // 'Password',
-    // 'PermanentAddress',
-    'City',
-    'Postalcode',
-    'Date',
-    // 'TemporaryAddress',
-    'role',
-    'action',
-    'delete',
+    constants.FirstName,
+    constants.LastName,
+    constants.Email,
+    constants.City,
+    constants.Postalcode,
+    constants.Date,
+    constants.role,
+    constants.action,
+    constants.delete,
   ];
 
   dataSource = new MatTableDataSource(this.employee);
-
-  @ViewChild(MatPaginator, { static: true }) paginator: any = MatPaginator;
 
   getUsers(): void {
     this.apiservice.get().subscribe((res: any) => {
@@ -83,7 +77,6 @@ export class UserComponent implements OnInit {
       this.Dialog.afterClosed().subscribe((result: any) => {
         this.getUsers();
         this._toastr.success('Your account has been edit.', 'Success');
-        // this.cdr.detectChanges();
       });
     } else {
       this.Dialog = this.dialogModel.open(DialogComponent, {
@@ -95,7 +88,6 @@ export class UserComponent implements OnInit {
       });
       this.Dialog.afterClosed().subscribe((result: any) => {
         this.getUsers();
-        // this.cdr.detectChanges();
       });
     }
   }

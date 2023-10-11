@@ -1,0 +1,47 @@
+{
+  "chartData":[
+    {
+      "year": 2019,
+      "amount": 5000,
+      "phone":{
+        "oppo":10,
+        "samsung":20,
+        "vivo":30,
+        "realme":40,
+        "redmi":50
+      },
+      "color": "rgba(124,252,0)",
+      "borderColor": "rgba(124,252,0)"
+    },
+    {
+      "year": 2020,
+      "amount": 6000,
+      "phones":{
+        "oppo":10,
+        "samsung":20,
+        "vivo":30,
+        "realme":40,
+        "redmi":50
+      },
+      "color": "rgba(128,0,0)",
+      "borderColor": "rgba(128,0,0)"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

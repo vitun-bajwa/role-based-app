@@ -31,8 +31,8 @@ export class TaskComponent implements OnInit {
 
   profileForm = this.fb.group({
     id: ['', []],
-    addTask: ['', [Validators.required, Validators.pattern(regex.name)]],
-    users: ['', Validators.required],
+    addTask: ['',],
+    users: ['',],
   });
 
   getDropdownData() {
@@ -63,7 +63,7 @@ export class TaskComponent implements OnInit {
     this.currentitem = item;
   }
 
-  onDrop(event: any, status: string) {
+  onDrop(event: any, status: string) { debugger
     event.preventDefault();
     const record = this.dataSource.find(
       (item: any) => item.id === this.currentitem.id
@@ -72,14 +72,6 @@ export class TaskComponent implements OnInit {
       record.status = status;
     }
     this.currentitem = null;
-    this._taskService.update(this.profileForm.value).subscribe({
-      next: (res: any) => {
-        if (record.status) {
-          status = 'In Progress';
-          this.currentitem = null;
-        }
-      },
-    });
   }
 
   onDragOver(event: any) {

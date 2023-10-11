@@ -6,13 +6,11 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
-    // canActivate: [UnauthGuard]
   },
   {
     path: 'dashboard',
     loadChildren: () =>
       import('./feature/feature.module').then((m) => m.FeatureModule),
-    // canActivate: [AuthGuard]
   },
   {
     path: 'user',
