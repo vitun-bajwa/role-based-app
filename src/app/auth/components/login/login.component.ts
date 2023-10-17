@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   ngOnInit(): void {
+    this.getRecords();
     this.empregister = this.fb.group({
       Email: [
         '',
@@ -33,13 +34,25 @@ export class LoginComponent implements OnInit {
   }
   onSubmit() {
     if (this.empregister.valid) {
-      this._router.navigate(['/dashboard']);
-      this._toastr.success('You have been successfully login.', 'Success');
-      localStorage.setItem(
-        'empregister',
-        JSON.stringify(this.empregister.value)
-      );
-      this.empregister.reset();
+      if(this.empregister.value.Password === this.users.Password){
+        this._toastr.success('You have been successfully login.', 'Success');
+        this._router.navigate(['/dashboard']);
+        localStorage.setItem('empregister',JSON.stringify(this.empregister.value));
+        this.empregister.reset();
+      }
+      else{
+        this._toastr.error('Password is incorrect.', 'Error');
+      }
     }
+  }
+
+  users: any;
+  getRecords() {
+      this.role.get().subscribe((res:any) => {
+        res.map((item:any) => {
+          this.users = item.Password
+          console.log(this.users);
+      });
+    });
   }
 }

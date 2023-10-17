@@ -9,6 +9,7 @@ import { LoaderService } from 'src/app/core/service/loader/loader.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-user',
@@ -32,7 +33,11 @@ export class UserComponent implements OnInit {
     public cdr: ChangeDetectorRef,
     public _toastr: ToastrService
   ) {}
+  @ViewChild(MatSort) sort!: MatSort;
 
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
   displayedColumns: string[] = [
     constants.id,
     constants.FirstName,
