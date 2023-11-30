@@ -22,6 +22,11 @@ const routes: Routes = [
     component: LayoutComponent,
     loadChildren: () => import('./task/task.module').then((m) => m.TaskModule),
   },
+  {
+    path: 'todo',
+    component: LayoutComponent,
+    loadChildren: () => import('./addlisting/addlisting.module').then((m) => m.AddlistingModule),
+  },
 ];
 
 @NgModule({

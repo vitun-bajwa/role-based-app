@@ -1,0 +1,15 @@
+<div class="card shadow text-center mb-5">
+    <div class="card-header bg-primary text-light">
+        <h4>ADD TODO</h4>
+    </div>
+
+    <div class="card-body">
+        <form #addTodo="ngForm" (submit)="onSubmit()">
+            <div class="form-group">
+                <input type="text" name="todo" class="form-control" placeholder="Add Todo . . ." [(ngModel)]="todo" required>
+            </div>
+            <button class="btn btn-primary" [disabled]="addTodo.invalid"> ADD </button>
+        </form>
+        <!-- {{todo}} -->
+    </div>
+</div>
